@@ -30,6 +30,10 @@ header {
   background-color: gold;
 }
 
+.hidden {
+  display: none;
+}
+
 .light-color {
   background-color: white;
 }
