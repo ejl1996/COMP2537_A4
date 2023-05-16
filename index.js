@@ -1,6 +1,4 @@
 
-
-
 const setup = () => {
   let firstCard = undefined
   let secondCard = undefined
