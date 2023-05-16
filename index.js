@@ -1,14 +1,15 @@
-
 const setup = () => {
-  let firstCard = undefined
-  let secondCard = undefined
+  let firstCard = undefined;
+  let secondCard = undefined;
+
   $(".card").on(("click"), function () {
     $(this).toggleClass("flip");
 
-    if (!firstCard)
-      firstCard = $(this).find(".front_face")[0]
+    if (!firstCard) {
+      firstCard = $(this).find(".front_face")[0];
+    } 
     else {
-      secondCard = $(this).find(".front_face")[0]
+      secondCard = $(this).find(".front_face")[0];
       console.log(firstCard, secondCard);
       if (
         firstCard.src
@@ -28,5 +29,4 @@ const setup = () => {
     }
   });
 }
-
 $(document).ready(setup)
