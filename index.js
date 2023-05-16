@@ -7,7 +7,7 @@ const setup = () => {
 
     if (!firstCard) {
       firstCard = $(this).find(".front_face")[0];
-    } 
+    }
     else {
       secondCard = $(this).find(".front_face")[0];
       console.log(firstCard, secondCard);
@@ -16,17 +16,25 @@ const setup = () => {
         ==
         secondCard.src
       ) {
-        console.log("match")
-        $(`#${firstCard.id}`).parent().off("click")
-        $(`#${secondCard.id}`).parent().off("click")
+        console.log("match");
+        $(`#${firstCard.id}`).parent().off("click");
+        $(`#${secondCard.id}`).parent().off("click");
       } else {
-        console.log("no match")
+        console.log("no match");
         setTimeout(() => {
-          $(`#${firstCard.id}`).parent().toggleClass("flip")
-          $(`#${secondCard.id}`).parent().toggleClass("flip")
-        }, 1000)
+          $(`#${firstCard.id}`).parent().toggleClass("flip");
+          $(`#${secondCard.id}`).parent().toggleClass("flip");
+        }, 1000);
       }
     }
   });
-}
+
+  $("#goldColorBtn").on("click", function () {
+    $("#game_grid").toggleClass("gold-color");
+  });
+  $("#lightColorBtn").on("click", function () {
+    $('#game_grid').removeClass("gold-color");
+  });
+};
+
 $(document).ready(setup)
