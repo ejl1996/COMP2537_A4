@@ -3,26 +3,20 @@ const setup = () => {
   let secondCard = undefined;
   let powerUpActive = false;
 
-
-  $(".card").on(("click"), function () {
+  $(".card").on("click", function () {
     $(this).toggleClass("flip");
 
     if (!firstCard) {
       firstCard = $(this).find(".front_face")[0];
-    }
-    else {
+    } else {
       secondCard = $(this).find(".front_face")[0];
       console.log(firstCard, secondCard);
-      if (
-        firstCard.src
-        ==
-        secondCard.src
-      ) {
+      if (firstCard.src == secondCard.src) {
         console.log("match");
         $(`#${firstCard.id}`).parent().off("click");
         $(`#${secondCard.id}`).parent().off("click");
 
-        //check if all cards matched
+        // Check if all cards matched
         if ($(".card:not(.matched)").length === 0) {
           console.log("You win!");
           $("#winMessage").text("You win!");
@@ -45,19 +39,66 @@ const setup = () => {
   });
 
   $("#lightColorBtn").on("click", function () {
-    $('#game_grid').removeClass("sgold-color");
+    $('#game_grid').removeClass("gold-color");
   });
 
-  $("#powerUpBtn").on("click", function () {
-    powerUpActive = !powerUpActive;
-    if (powerUpActive) {
-      // Add logic for the power-up activation
-      console.log("Power-up activated!");
-    } else {
-      // Add logic for the power-up deactivation
-      console.log("Power-up deactivated!");
-    }
+  const difficulty = $('input[name="options"]:checked').val();
+  if (difficulty === "medium") {
+    addExtraCards(2);
+  } else if (difficulty === "hard") {
+    addExtraCards(4);
+  }
+
+  $("#reset").on("click", function () {
+    resetGame();
+    $("#start").show();
   });
+
+  $("#start").hide(); // Initially hide the Start button
 };
 
-$(document).ready(setup)
+const addExtraCards = (numCards) => {
+  let extraCards = "";
+  for (let i = 0; i < numCards; i++) {
+    extraCards += `
+      <div class="card extra-card">
+        <img id="img${i + 7}" class="front_face" src="00${i + 4}.png" alt="">
+        <img class="back_face" src="back.webp" alt="">
+      </div>
+    `;
+  }
+
+  $("#game_grid").append(extraCards);
+};
+
+const resetGame = () => {
+  // Reset card flips
+  $(".card").removeClass("flip");
+
+  // Reset matched cards
+  $(".card").removeClass("matched");
+
+  // Enable click events on all cards
+  $(".card").on("click");
+
+  // Reset variables
+  firstCard = undefined;
+  secondCard = undefined;
+  powerUpActive = false;
+
+  // Reset win message
+  $("#winMessage").text("");
+
+  // Reset timer (if applicable)
+  clearInterval(timerInterval);
+  timerSeconds = 0;
+  $("#timer").text(timerSeconds);
+
+  // Remove extra cards (if present)
+  $(".extra-card").remove();
+
+  // Shuffle the cards
+  shuffleCards();
+};
+
+$(document).ready(setup);
