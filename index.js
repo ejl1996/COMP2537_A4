@@ -21,6 +21,12 @@ const setup = () => {
         console.log("match");
         $(`#${firstCard.id}`).parent().off("click");
         $(`#${secondCard.id}`).parent().off("click");
+
+        //check if all cards matched
+        if ($(".card:not(.matched)").length === 0) {
+          console.log("You win!");
+          $("#winMessage").text("You win!");
+        }
       } else {
         console.log("no match");
         setTimeout(() => {
