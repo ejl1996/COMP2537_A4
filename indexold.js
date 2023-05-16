@@ -4,23 +4,22 @@ const setup = () => {
   let powerUpActive = false;
 
   $(".card").on("click", function () {
-    if ($(this).hasClass("matched") || $(this).hasClass("flip")) {
-      // Clicked on a matched card or the same card twice, do nothing
+    if ($(this).find(".front_face")[0] === firstCard) {
+      // Clicked on the same card, do nothing
       return;
     }
 
     $(this).toggleClass("flip");
 
-    let flippedCards = $(".card.flip");
-
-    if (flippedCards.length === 2) {
-      const firstCard = flippedCards.eq(0).find(".front_face")[0];
-      const secondCard = flippedCards.eq(1).find(".front_face")[0];
-
+    if (!firstCard) {
+      firstCard = $(this).find(".front_face")[0];
+    } else {
+      secondCard = $(this).find(".front_face")[0];
+      console.log(firstCard, secondCard);
       if (firstCard.src == secondCard.src) {
         console.log("match");
-        flippedCards.removeClass("flip");
-        flippedCards.addClass("matched");
+        $(`#${firstCard.id}`).parent().off("click");
+        $(`#${secondCard.id}`).parent().off("click");
 
         // Check if all cards matched
         if ($(".card:not(.matched)").length === 0) {
@@ -30,11 +29,20 @@ const setup = () => {
       } else {
         console.log("no match");
         setTimeout(() => {
-          flippedCards.removeClass("flip");
+          if ($(this).find(".front_face")[0] === firstCard || $(this).find(".front_face")[0] === secondCard) {
+            $(`#${firstCard.id}`).parent().toggleClass("flip");
+            $(`#${secondCard.id}`).parent().toggleClass("flip");
+          }
+          firstCard = undefined;
+          secondCard = undefined;
         }, 1000);
       }
+
+      firstCard = undefined;
+      secondCard = undefined;
     }
   });
+
 
   $("#goldColorBtn").on("click", function () {
     $("#game_grid").toggleClass("gold-color");
