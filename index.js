@@ -45,7 +45,7 @@ const setup = () => {
   });
 
   $("#lightColorBtn").on("click", function () {
-    $('#game_grid').removeClass("gold-color");
+    $('#game_grid').removeClass("sgold-color");
   });
 
   $("#powerUpBtn").on("click", function () {

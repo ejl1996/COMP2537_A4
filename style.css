@@ -2,6 +2,12 @@ body {
   margin: 0px;
 }
 
+header {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px;
+}
+
 #game_grid {
   border: 2px tomato solid;
   width: 600px;

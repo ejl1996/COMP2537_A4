@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,6 +10,13 @@
   <!-- import jQuery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="index.js"></script>
+  <!-- popper -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <!-- import Bootstrap css and js-->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <body>
@@ -34,48 +44,14 @@
     </section>
 
   </header>
-  <div id="container">
-    <div id="winMessage">
-      <br>
-      <br>
-      <br>
-      <div id="game_grid">
-        <div class="card">
-          <img id="img1" class="front_face" src="001.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <div class="card">
-          <img id="img2" class="front_face" src="002.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <div class="card">
-          <img id="img3" class="front_face" src="003.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <div class="card">
-          <img id="img4" class="front_face" src="001.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <div class="card">
-          <img id="img5" class="front_face" src="002.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <div class="card">
-          <img id="img6" class="front_face" src="003.png" alt="">
-          <img class="back_face" src="back.webp" alt="">
-        </div>
-        <br>
-      </div>
-      <br>
-      <br>
-      <br>
-      <div class="vertical-center">
-        <button id="goldColorBtn" style="font-size: 50px; background-color:
-                                                gold;">Gold Theme</button>
-        <button id="lightColorBtn" style="font-size: 50px;">Light Theme</button>
-      </div>
-    </div>
+  <div id="game_grid">
   </div>
+
+  <section id="themes" class="text-center">
+    <button id="dark" class="btn btn-dark"> Dark </button>
+    <button id="light" class="btn btn-light"> light </button>
+  </section>
+
 </body>
 
 </html>
